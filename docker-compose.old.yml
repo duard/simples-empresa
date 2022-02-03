@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  simples-api:
+    build:
+      context: .
+      dockerfile: /home/duard/zdev/simples-empresa/apis/simples-api/Dockerfile.simples.api
+      target: development
+    ports:
+      - 4001:4001
+    restart: on-failure
+    volumes:
+      - .:/app
+      - api_simples_vol:/usr/src/simples-api/
+      - node_modules:/usr/src/node_modules/
+    networks:
+      - monorepo_net
+
+volumes:
+  api_simples_vol:
+  node_modules:
+
+networks:
+  monorepo_net:
+    driver: bridge

@@ -1,0 +1,15 @@
+
+FROM node:13-alpine as development
+WORKDIR /app
+COPY package.json package-lock.json ./
+COPY .env.dev ./
+RUN  npm install minimist &&\
+  npm install --only=development &&\
+npm install -g @nestjs/cli nx
+
+COPY . .
+
+# ARG node_env=dev
+# ENV NODE_ENV $node_env
+EXPOSE 4001
+CMD ["nx", "serve", "simples-api"]

@@ -1,0 +1,27 @@
+
+version: '3.8'
+services:
+  simples-api-nx:
+    build:
+      context: .
+      dockerfile: /home/duard/zdev/simples-empresa/apps/simples-api-nx/Dockerfile.simples.api
+      target: development
+    environment:
+      - REDIS_URL="redis://host.docker.internal:6379"
+    ports:
+      - 4001:4001
+    restart: on-failure
+    volumes:
+      - .:/app
+      - simples_api_nx:/usr/src/simples-api-nx/
+      - node_modules:/usr/src/node_modules/
+    networks:
+      - monorepo_net
+
+volumes:
+  simples_api_nx:
+  node_modules:
+
+networks:
+  monorepo_net:
+    driver: bridge

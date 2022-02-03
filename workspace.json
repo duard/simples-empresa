@@ -1,6 +1,8 @@
 {
   "version": 2,
   "projects": {
-
+    "api-core": "libs/api/core",
+    "simples-api": "apis/simples-api",
+    "simples-api-nx": "apps/simples-api-nx"
   }
 }
